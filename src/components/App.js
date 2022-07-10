@@ -3,7 +3,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import ImagePopup from "./ImagePopup";
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
@@ -28,6 +28,7 @@ function App() {
   const [registeredIn, setRegisteredIn] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -126,6 +127,8 @@ function App() {
   function handleOnLogin(isRegistered) {
     setRegisteredIn(isRegistered);
     setIsInfoTooltipPopupOpen(true);
+    navigate("/");
+
   }
 
   function handleOnRegister() {
@@ -135,7 +138,15 @@ function App() {
   function handleOnLogout() {
     setEmail("");
     setLoggedIn(false);
+    navigate("/sign-in");
   }
+
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, [loggedIn]);
 
   useEffect(() => {
     function handleEscClose(event) {
