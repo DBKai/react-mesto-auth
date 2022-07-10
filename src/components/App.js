@@ -130,9 +130,19 @@ function App() {
     navigate("/");
   }
 
-  function handleOnRegister(isRegistered) {
-    setRegisteredIn(isRegistered);
-    setIsInfoTooltipPopupOpen(true);
+  function handleOnRegister(email, password) {
+    authApi.register({email, password})
+      .then((res) => {
+        if (res.data) {
+          setRegisteredIn(true);
+        }
+      })
+      .catch(err => {
+        console.log(`Ошибка: ${err}`);
+      })
+      .finally(() => {
+        setIsInfoTooltipPopupOpen(registeredIn);
+      });
     navigate("/sign-in");
   }
 

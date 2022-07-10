@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Register() {
+function Register({ onRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  function onRegister(event) {
+  function handleSubmit(event) {
     event.preventDefault();
+    onRegister(email, password);
   }
 
   function handleChange(event) {
@@ -22,7 +23,7 @@ function Register() {
   return(
     <div className="form">
       <h2 className="form__heading">Регистрация</h2>
-      <form className="form__container" onSubmit={onRegister} noValidate>
+      <form className="form__container" onSubmit={handleSubmit} noValidate>
         <fieldset className="form__item-container">
           <input
             className="form__item"
