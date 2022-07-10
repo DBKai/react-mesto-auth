@@ -50,6 +50,7 @@ function App() {
     setIsConfirmationDeletePopupOpen(false);
     setSelectedCard({});
     setWillBeDeletedCard(0);
+    setIsInfoTooltipPopupOpen(false);
   }
 
   function handleCardClick(clickedCard) {
@@ -125,9 +126,18 @@ function App() {
       });
   }
 
-  function handleOnLogin() {
-    tokenCheck();
-    navigate("/");
+  function handleOnLogin(email, password) {
+    authApi.authorization({email, password})
+      .then((res) => {
+        if(res.token) {
+          localStorage.setItem("jwt", res.token);
+          tokenCheck();
+          navigate("/");
+        }
+      })
+      .catch(err => {
+        console.log(`Ошибка: ${err}`);
+      });
   }
 
   function handleOnRegister(email, password) {
@@ -142,8 +152,8 @@ function App() {
       })
       .finally(() => {
         setIsInfoTooltipPopupOpen(registeredIn);
+        navigate("/sign-in");
       });
-    navigate("/sign-in");
   }
 
   function handleOnLogout() {
