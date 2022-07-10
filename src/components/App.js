@@ -13,6 +13,7 @@ import DeleteConfirmationPopup from "./DeleteConfirmationPopup";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -24,6 +25,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [registeredIn, setRegisteredIn] = useState(false);
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -196,6 +199,10 @@ function App() {
         onClose={closeAllPopups}
         handleCardDelete={handleCardDelete}
         willBeDeletedCard={willBeDeletedCard}/>
+      <InfoTooltip
+        isSuccess={registeredIn}
+        isOpen={isInfoTooltipPopupOpen}
+        onClose={closeAllPopups} />
     </CurrentUserContext.Provider>
   );
 }
