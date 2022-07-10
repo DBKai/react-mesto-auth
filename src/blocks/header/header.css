@@ -8,6 +8,9 @@
   -webkit-background-clip: padding-box;
   /* for IE9+, Firefox 4+, Opera, Chrome */
   background-clip: padding-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media screen and (min-width: 918px) {

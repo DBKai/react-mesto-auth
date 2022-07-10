@@ -27,6 +27,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [registeredIn, setRegisteredIn] = useState(false);
   const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
+  const [email, setEmail] = useState("");
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -122,12 +123,18 @@ function App() {
       });
   }
 
-  function handleOnLogin() {
-
+  function handleOnLogin(isRegistered) {
+    setRegisteredIn(isRegistered);
+    setIsInfoTooltipPopupOpen(true);
   }
 
   function handleOnRegister() {
 
+  }
+
+  function handleOnLogout() {
+    setEmail("");
+    setLoggedIn(false);
   }
 
   useEffect(() => {
@@ -160,7 +167,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header/>
+      <Header email={email} onLogout={handleOnLogout} loggedIn={loggedIn}/>
       <Routes>
         <Route
           path="/"
