@@ -14,6 +14,7 @@ import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
+import * as authApi from "../utils/authApi.js";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -124,23 +125,33 @@ function App() {
       });
   }
 
-  function handleOnLogin(isRegistered) {
-    setRegisteredIn(isRegistered);
-    setIsInfoTooltipPopupOpen(true);
+  function handleOnLogin() {
+    tokenCheck();
     navigate("/");
-
   }
 
-  function handleOnRegister() {
-
+  function handleOnRegister(isRegistered) {
+    setRegisteredIn(isRegistered);
+    setIsInfoTooltipPopupOpen(true);
+    navigate("/sign-in");
   }
 
   function handleOnLogout() {
     setEmail("");
     setLoggedIn(false);
-    navigate("/sign-in");
   }
 
+  function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt !== null && jwt !== "undefined"){
+      authApi.checkToken(jwt).then(res => {
+        if(res.data) {
+          setEmail(res.data.email);
+          setLoggedIn(true);
+        }
+      });
+    }
+  }
 
   useEffect(() => {
     if (loggedIn) {
@@ -154,6 +165,8 @@ function App() {
         closeAllPopups();
       }
     }
+
+    tokenCheck();
 
     Promise.all([api.getUserInfo(), api.getCards()])
       .then(([user, cards]) => {
