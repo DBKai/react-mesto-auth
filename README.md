@@ -1,7 +1,19 @@
-# Здесь будет ваш проект на Реакте с авторизацией и регистрацией
+# Место. Authorization
+Проектная работа в рамках курса "Веб-разработчик" от :man_student: Яндекс.Практикум.
 
-Используйте ваши предыдущие наработки по проекту Mesto. Это может быть работа 11-го спринта или его улучшенная версия после 2-х последних спринтов. 
+## Описание проекта
+Продолжение проекта Место, в этой версии добавлена возможность регистрации, авторизации, функции входа по токену и выхода.
 
-Все запросы на авторизацию, регистрацию и проверку токена должны работать через сервис `https://auth.nomoreparties.co`. Остальные запросы, не относящиеся к этой проектной работе могут быть к бэкенду из предыдущих спринтов.
-
-Успехов!
+## Технологии
+![HTML5](https://img.shields.io/badge/HTML5-orange?logo=HTML5&style=flat)
+![CSS3](https://img.shields.io/badge/CSS3-green?logo=CSS3&style=flat)
+![REACT](https://img.shields.io/badge/React-blue?logo=REACT&style=flat)
+![REACT-ROUTER](https://img.shields.io/badge/ReactRouter-gray?logo=ReactRouter&style=flat)
+- Функциональные компоненты
+- React-hooks
+- JSX-синтаксис
+- React DevTools
+- REST Api
+- HOC-компонент ProtectedRoute
+- localStorage
+- React router 6
