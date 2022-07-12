@@ -3,3 +3,10 @@
   text-align: center;
   color: black;
 }
+
+@media screen and (max-width: 500px) {
+  .tooltip__container {
+    width: 280px;
+    min-height: 308px;
+  }
+}

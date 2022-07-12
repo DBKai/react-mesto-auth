@@ -5,8 +5,11 @@
 @import 'blocks/header/__logo/header__logo.css';
 @import 'blocks/header/__login/header__login.css';
 @import 'blocks/header/__link/header__link.css';
-@import 'blocks/header/__email/header__email.css';
-@import 'blocks/header/__button-logout/header__button-logout.css';
+@import 'blocks/menu/__email/menu__email.css';
+@import 'blocks/menu/__button-logout/menu__button-logout.css';
+@import 'blocks/header/__mobile-menu/header__mobile-menu.css';
+@import 'blocks/header/__mobile-menu/_open/header__mobile-menu_open.css';
+@import 'blocks/header/__mobile-menu/_close/header__mobile-menu_close.css';
 @import 'blocks/content/content.css';
 @import 'blocks/profile/profile.css';
 @import 'blocks/profile/__avatar/profile__avatar.css';
@@ -57,3 +60,4 @@
 @import 'blocks/tooltip/__container/tooltip__container.css';
 @import 'blocks/tooltip/__heading/tooltip__heading.css';
 @import 'blocks/tooltip/__icon/tooltip__icon.css';
+@import 'blocks/menu/menu.css';

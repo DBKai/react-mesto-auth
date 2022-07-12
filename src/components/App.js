@@ -146,13 +146,13 @@ function App() {
         if (res.data) {
           setRegisteredIn(true);
         }
+        navigate("/sign-in");
       })
       .catch(err => {
         console.log(`Ошибка: ${err}`);
       })
       .finally(() => {
-        setIsInfoTooltipPopupOpen(registeredIn);
-        navigate("/sign-in");
+        setIsInfoTooltipPopupOpen(true);
       });
   }
 
@@ -176,6 +176,7 @@ function App() {
 
   useEffect(() => {
     if (loggedIn) {
+      setRegisteredIn(false);
       navigate("/");
     }
   }, [loggedIn]);
@@ -212,7 +213,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header email={email} onLogout={handleOnLogout} loggedIn={loggedIn}/>
+      <Header loggedIn={loggedIn} email={email} onLogout={handleOnLogout}/>
       <Routes>
         <Route
           path="/"

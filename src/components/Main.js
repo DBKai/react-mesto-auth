@@ -29,7 +29,7 @@ function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onCa
                     aria-label="Редактировать профиль"
                     onClick={onEditProfile}></button>
           </div>
-          <p className="profile__about">{currentUser.about}</p>
+          <p className="profile__job">{currentUser.about}</p>
         </div>
         <button className="profile__card-add"
                 type="button"

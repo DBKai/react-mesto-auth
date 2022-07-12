@@ -12,3 +12,9 @@
 .form__link-caption:hover {
   opacity: 0.6;
 }
+
+@media screen and (max-width: 618px) {
+  .form__link-caption {
+    margin-top: 20px;
+  }
+}
