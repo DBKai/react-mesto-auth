@@ -1,33 +1,22 @@
 import PopupWithForm from "./PopupWithForm";
-import {useEffect, useState} from "react";
+import { useEffect } from "react";
+import useFormAndValidation from "../hooks/useFormAndValidation";
 
 function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
-  const [avatar, setAvatar] = useState("");
-  const [isValid, setIsValid] = useState(false);
-  const [isValidAvatar, setIsValidAvatar] = useState(true);
-  const [avatarError, setAvatarError] = useState("");
-  const avatarErrorClassName = (`popup__item-error ${!isValidAvatar && "popup__item_type_error"}`);
+  const { values, handleChange, errors, isValid, setValues, resetForm } = useFormAndValidation();
+  const avatarErrorClassName = (`popup__item-error ${errors?.avatar && "popup__item_type_error"}`);
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    onUpdateAvatar({avatar});
-  }
-
-  function handleChange(event) {
-    const input = event.target;
-    const form = input.closest('.popup__form');
-    setAvatar(input.value);
-    setIsValidAvatar(input.validity.valid);
-    setAvatarError(input.validationMessage);
-    setIsValid(form.checkValidity());
+    onUpdateAvatar({
+      avatar: values.avatar
+    });
   }
 
   useEffect(() => {
     if (isOpen) {
-      setAvatar("");
-      setIsValidAvatar(true);
-      setIsValid(false);
+      resetForm();
     }
   }, [isOpen]);
 
@@ -46,10 +35,10 @@ function EditAvatarPopup({isOpen, onClose, onUpdateAvatar}) {
         className="popup__item"
         type="url"
         placeholder="Ссылка на аватар"
-        value={avatar}
+        value={values?.avatar || ""}
         onChange={handleChange}
         required/>
-      <span id="avatar-link-error" className={avatarErrorClassName}>{avatarError}</span>
+      <span id="avatar-link-error" className={avatarErrorClassName}>{errors?.avatar || ""}</span>
     </PopupWithForm>
   );
 }

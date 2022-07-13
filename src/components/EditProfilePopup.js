@@ -1,55 +1,33 @@
 import PopupWithForm from "./PopupWithForm";
-import {useState, useEffect, useContext} from "react";
+import { useEffect, useContext} from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
+import useFormAndValidation from "../hooks/useFormAndValidation";
 
 function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const currentUser = useContext(CurrentUserContext);
-  const [isValid, setIsValid] = useState(true);
-  const [isValidName, setIsValidName] = useState(true);
-  const [nameError, setNameError] = useState("");
-  const [isValidDescription, setIsValidDescription] = useState(true);
-  const [descriptionError, setDescriptionError] = useState("");
-  const nameInputClassName = (`popup__item ${!isValidName && "popup__item-error_active"}`);
-  const nameErrorClassName = (`popup__item-error ${!isValidName && "popup__item_type_error"}`);
-  const descriptionInputClassName = (`popup__item ${!isValidDescription && "popup__item-error_active"}`);
-  const descriptionErrorClassName = (`popup__item-error ${!isValidDescription && "popup__item_type_error"}`);
-
-  function handleChange(event) {
-    const input = event.target;
-    const form = input.closest('.popup__form');
-    if (input.name === "name") {
-      setName(input.value);
-      setIsValidName(input.validity.valid);
-      setNameError(input.validationMessage);
-    }
-    if (input.name === "about") {
-      setDescription(event.target.value);
-      setIsValidDescription(input.validity.valid);
-      setDescriptionError(input.validationMessage);
-    }
-    setIsValid(form.checkValidity());
-  }
+  const { values, handleChange, errors, isValid, setValues, resetForm } = useFormAndValidation();
+  const nameInputClassName = (`popup__item ${errors?.name && "popup__item-error_active"}`);
+  const nameErrorClassName = (`popup__item-error ${errors?.name && "popup__item_type_error"}`);
+  const descriptionInputClassName = (`popup__item ${errors?.about && "popup__item-error_active"}`);
+  const descriptionErrorClassName = (`popup__item-error ${errors?.about && "popup__item_type_error"}`);
 
   function handleSubmit(event) {
     event.preventDefault();
 
     onUpdateUser({
-      name,
-      about: description
+      name: values.name,
+      about: values.about
     });
   }
 
   useEffect(() => {
     if (isOpen) {
-      setName(currentUser.name);
-      setDescription(currentUser.about);
-      setIsValid(true);
-      setIsValidName(true);
-      setIsValidDescription(true);
+      setValues({...values,
+        "name": currentUser.name,
+        "about": currentUser.about
+      });
     }
-  }, [currentUser, isOpen]);
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -68,10 +46,10 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
         placeholder="Имя"
         minLength="2"
         maxLength="40"
-        value={name}
+        value={values?.name || ""}
         onChange={handleChange}
         required/>
-      <span id="profile-name-error" className={nameErrorClassName}>{nameError}</span>
+      <span id="profile-name-error" className={nameErrorClassName}>{errors?.name || ""}</span>
       <input
         id="profile-about"
         name="about"
@@ -80,10 +58,10 @@ function EditProfilePopup({isOpen, onClose, onUpdateUser}) {
         placeholder="О себе"
         minLength="2"
         maxLength="200"
-        value={description}
+        value={values?.about || ""}
         onChange={handleChange}
         required/>
-      <span id="profile-about-error" className={descriptionErrorClassName}>{descriptionError}</span>
+      <span id="profile-about-error" className={descriptionErrorClassName}>{errors?.about || ""}</span>
     </PopupWithForm>
   );
 }
