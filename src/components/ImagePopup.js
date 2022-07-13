@@ -3,7 +3,7 @@ function ImagePopup({card, onClose}) {
     if (event.target === event.currentTarget) onClose();
   }
 
-  return(
+  return (
     <div className={`popup popup_type_image-view ${card._id && 'popup_opened'}`}
          onMouseDown={handleClosePopup}>
       <div className="popup__image-container">

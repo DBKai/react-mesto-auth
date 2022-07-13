@@ -20,7 +20,7 @@ function Register({ onRegister }) {
     }
   }
 
-  return(
+  return (
     <div className="form">
       <h2 className="form__heading">Регистрация</h2>
       <form className="form__container" onSubmit={handleSubmit} noValidate>

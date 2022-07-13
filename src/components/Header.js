@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from "react-router-dom";
+import {Link, Route, Routes, useLocation} from "react-router-dom";
 import logo from "../images/logo.svg";
-import burgerMenu from "../images/burger_menu.svg";
-import closeMenu from "../images/close.svg";
 import NavBar from "./NavBar";
 
 function Header({ loggedIn, email, onLogout }) {
@@ -47,37 +45,36 @@ function Header({ loggedIn, email, onLogout }) {
     <>
       {
         loggedIn && mobileMenuIsVisible && windowDimension.winWidth < 500 &&
-        (<NavBar
+        <NavBar
           loggedIn={loggedIn}
           email={email}
-          onLogout={onLogout} />)
+          onLogout={onLogout} />
       }
       <header className="header">
         <img className="header__logo" src={logo} alt="Логотип Mesto"/>
-        {
-          !loggedIn && <div className="header__login">
-            {
-              !loggedIn &&
-              (<Link to={signup ? "/sign-in" : "/sign-up"} className="header__link">
-                { signup ? "Войти" : "Зарегистрироваться" }
-              </Link>)
-            }
-          </div>
-        }
-        {
-          loggedIn && windowDimension.winWidth > 500 &&
-          (<NavBar
-            loggedIn={loggedIn}
-            email={email}
-            onLogout={onLogout} />)
-        }
-        {
-          loggedIn && windowDimension.winWidth < 500 &&
-          (<button
-            className={mobileMenuClassName}
-            onClick={handleMobileMenu}
-            src={ mobileMenuIsVisible ? closeMenu : burgerMenu } />)
-        }
+        <div className="header__login">
+          <Routes>
+            <Route path="/" element={
+              <>
+                { windowDimension.winWidth > 500 &&
+                  <NavBar
+                    loggedIn={loggedIn}
+                    email={email}
+                    onLogout={onLogout} /> }
+                { windowDimension.winWidth < 500 &&
+                  <button
+                    className={mobileMenuClassName}
+                    onClick={handleMobileMenu} /> }
+              </>
+            }/>
+            <Route path="/sign-in" element={
+              <Link to="/sign-up" className="header__link">Зарегистрироваться</Link>
+            }/>
+            <Route path="/sign-up" element={
+              <Link to="/sign-in" className="header__link">Войти</Link>
+            }/>
+          </Routes>
+        </div>
       </header>
     </>
   );

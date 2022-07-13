@@ -5,11 +5,13 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 function Main({onEditAvatar, onEditProfile, onAddPlace, onCardClick, cards, onCardLike, onCardDelete}) {
   const currentUser = useContext(CurrentUserContext);
   const cardsElements = cards.map((card) => {
-    return <Card key={card._id}
-                 card={card}
-                 onCardClick={onCardClick}
-                 onCardLike={onCardLike}
-                 onCardDelete={onCardDelete}/>
+    return (
+      <Card key={card._id}
+        card={card}
+        onCardClick={onCardClick}
+        onCardLike={onCardLike}
+        onCardDelete={onCardDelete}/>
+    )
   });
 
   return (

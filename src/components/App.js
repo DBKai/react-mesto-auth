@@ -60,11 +60,7 @@ function App() {
   function handleUpdateUser({name, about}) {
     api.setUserInfo({name, about})
       .then(res => {
-        setCurrentUser({
-          name: res.name,
-          about: res.about,
-          avatar: res.avatar
-        });
+        setCurrentUser(res);
         closeAllPopups();
       })
       .catch(err => {
@@ -75,11 +71,7 @@ function App() {
   function handleUpdateAvatar({avatar}) {
     api.setUserAvatar(avatar)
       .then(user => {
-        setCurrentUser({
-          name: user.name,
-          about: user.about,
-          avatar: user.avatar
-        });
+        setCurrentUser(user);
         closeAllPopups();
       })
       .catch(err => {
@@ -164,13 +156,17 @@ function App() {
 
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
-    if (jwt !== null && jwt !== "undefined"){
-      authApi.checkToken(jwt).then(res => {
-        if(res.data) {
-          setEmail(res.data.email);
-          setLoggedIn(true);
-        }
-      });
+    if (jwt !== null && jwt !== "undefined") {
+      authApi.checkToken(jwt)
+        .then(res => {
+          if (res.data) {
+            setEmail(res.data.email);
+            setLoggedIn(true);
+          }
+        })
+        .catch(err => {
+          console.log(`Ошибка: ${err}`);
+        });
     }
   }
 

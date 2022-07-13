@@ -1,9 +1,9 @@
 function PopupWithForm({name, title, isOpen, onClose, submitBtnText, children, onSubmit, isValid}) {
+  const submitButtonClassName = (`popup__button ${!isValid && "popup__button_inactive"}`);
+
   function handleClosePopup(event) {
     if (event.target === event.currentTarget) onClose();
   }
-
-  const submitButtonClassName = (`popup__button ${!isValid && "popup__button_inactive"}`);
 
   return (
     <div className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`}

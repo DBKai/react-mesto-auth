@@ -19,7 +19,7 @@ function Login({ onLogin }) {
     }
   }
 
-  return(
+  return (
     <div className="form">
       <h2 className="form__heading">Вход</h2>
       <form className="form__container" onSubmit={handleSubmit} noValidate>
