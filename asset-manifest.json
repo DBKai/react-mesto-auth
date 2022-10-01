@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/react-mesto-auth/static/css/main.0416664e.css",
-    "main.js": "/react-mesto-auth/static/js/main.4535a600.js",
+    "main.js": "/react-mesto-auth/static/js/main.a4a49fa5.js",
     "static/js/787.2df4b1c8.chunk.js": "/react-mesto-auth/static/js/787.2df4b1c8.chunk.js",
     "static/media/Inter-Medium.woff?v=3.19": "/react-mesto-auth/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
     "static/media/Inter-Black.woff?v=3.19": "/react-mesto-auth/static/media/Inter-Black.c6938660eec019fefd68.woff",
@@ -16,16 +16,16 @@
     "static/media/status_error.svg": "/react-mesto-auth/static/media/status_error.d4ce2a261b68c6da973d51ef98afae1a.svg",
     "static/media/status_success.svg": "/react-mesto-auth/static/media/status_success.a9eb6caf1da3ff48b215fb1dd9477d74.svg",
     "static/media/heart-active.svg": "/react-mesto-auth/static/media/heart-active.35948469632d0421d697.svg",
-    "static/media/burger_menu.svg": "/react-mesto-auth/static/media/burger_menu.ccf7020248ca1ffd1496842227f6c3c8.svg",
+    "static/media/burger_menu.svg": "/react-mesto-auth/static/media/burger_menu.ccf7020248ca1ffd1496.svg",
     "static/media/pencil.svg": "/react-mesto-auth/static/media/pencil.6c7bf05444b9793fdf6e.svg",
-    "static/media/close.svg": "/react-mesto-auth/static/media/close.039f1f5203f653b4bacde5e34ee2810b.svg",
+    "static/media/close.svg": "/react-mesto-auth/static/media/close.039f1f5203f653b4bacd.svg",
     "static/media/plus.svg": "/react-mesto-auth/static/media/plus.d5d6f8af0577b9c95ee4.svg",
     "main.0416664e.css.map": "/react-mesto-auth/static/css/main.0416664e.css.map",
-    "main.4535a600.js.map": "/react-mesto-auth/static/js/main.4535a600.js.map",
+    "main.a4a49fa5.js.map": "/react-mesto-auth/static/js/main.a4a49fa5.js.map",
     "787.2df4b1c8.chunk.js.map": "/react-mesto-auth/static/js/787.2df4b1c8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0416664e.css",
-    "static/js/main.4535a600.js"
+    "static/js/main.a4a49fa5.js"
   ]
 }
